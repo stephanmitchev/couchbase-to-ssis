@@ -3,6 +3,8 @@ couchbase-to-ssis
 
 A plugin for Microsoft SQL Server Integration Services that allows a Couchbase cluster to be used as a source in a Data Flow task.
 
+For Couchbase to Oracle 10g synchronization, visit: https://github.com/stephanmitchev/couchbase-to-oracle
+
 OSS Mentions
 ------------------
 This solution contains the .NET Couchbase Driver downloaded from http://www.couchbase.com. You can re-download it and extract it over the existing files if you want the latest release - it should work fine. I have used the Couchbase logo to create an icon (couchbase.ico) to identify the plugin in the SSIS Data Tools IDE. You will also see Calvin Rien's adaptation of the JSON parser.
