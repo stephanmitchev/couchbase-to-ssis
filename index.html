@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Couchbase-to-ssis by stephanmitchev</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Couchbase-to-ssis</h1>
+        <h2>A Microsoft SQL Server Integration Service plugin that enables Couchbase to be used as a source component in a data flow task</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/stephanmitchev/couchbase-to-ssis/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/stephanmitchev/couchbase-to-ssis/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/stephanmitchev/couchbase-to-ssis" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="couchbase-to-ssis" class="anchor" href="#couchbase-to-ssis"><span class="octicon octicon-link"></span></a>couchbase-to-ssis</h1>
+
+<p>A plugin for Microsoft SQL Server Integration Services that allows a Couchbase cluster to be used as a source in a Data Flow task.</p>
+
+<p>For Couchbase to Oracle 10g synchronization, visit: <a href="https://github.com/stephanmitchev/couchbase-to-oracle">https://github.com/stephanmitchev/couchbase-to-oracle</a></p>
+
+<h2>
+<a name="oss-mentions" class="anchor" href="#oss-mentions"><span class="octicon octicon-link"></span></a>OSS Mentions</h2>
+
+<p>This solution contains the .NET Couchbase Driver downloaded from <a href="http://www.couchbase.com">http://www.couchbase.com</a>. You can re-download it and extract it over the existing files if you want the latest release - it should work fine. I have used the Couchbase logo to create an icon (couchbase.ico) to identify the plugin in the SSIS Data Tools IDE. You will also see Calvin Rien's adaptation of the JSON parser.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li>Get the source</li>
+<li>Make sure that you have VS2010, SQLServer 2012 Integration Services (and tools), and Microsoft SDK (for gacutil) installed</li>
+<li>Open the solution and build it. If you run Windows 8 or Windows Server 2012, You might need to change the paths post-build events from ..\v7.0A.. to ..\v8.0A..</li>
+</ol><p>Inspect the output log. Make sure that the library build without errors (there are currently 4 warnings) and that it successfully installed itself and the dependent assemblies to the GAC. THe first time you may get errors that It cannot find assembly to uninstall, but that's fine...</p>
+
+<p>Now open SSIS Data Tools and create a new SSIS Project with a data flow task. You should see in the sources that there is a new guy - red with a white couch. I'll let you play with the mouse at this point.</p>
+
+<h2>
+<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h2>
+
+<p>The Couchbase view that you want to synchronize must return as key a timestamp that is guaranteed to be updated if you change the JSON; the values of the view are ignored.</p>
+
+<p>After you configure the view credentials, press "Test and Use Connection". You need to test the connection every time before you open the Data Mapping Screen</p>
+
+<p>When you Generate a Model in the Data Mapping screen, most often your Root XPath will be empty (scan the entire JSON document)</p>
+
+<p>When you configure the component, View URL must be in the form of "<a href="http://hostname.com:8091/">http://hostname.com:8091/</a>"</p>
+
+<p>You can use variables for Start and End Key such as <a href="https://github.com/User" class="user-mention">@User</a>::lastSync. This is key if you want to implement synchronization as you need to select a last updated timestamp from your tables and start your view query with that key.</p>
+
+<p>... more to come</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
